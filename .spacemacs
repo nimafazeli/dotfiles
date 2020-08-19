@@ -50,15 +50,20 @@ values."
      bibtex
      (elfeed :variables
              ;; elfeed-enable-web-interface t
+             elfeed-enable-goodies nil
              ;; rhm-elfeed-org-files (list "c:Users/nima/.emacs.d/private/elfeed/feeds.org")
              elfeed-feeds '(
                             ("http://feeds.feedburner.com/TechCrunch/" tech news)
                             ;; ("http://feeds.feedburner.com/TechCrunch/startups" tech business)
                             ;; ("http://feeds.feedburner.com/Techcrunch/europe" news europe)
                             ("https://feeds.a.dj.com/rss/RSSWSJD.xml" tech news)
-                            ("http://feeds.bbci.co.uk/news/technology/rss.xml" tech news)
+                            ;; ("http://feeds.bbci.co.uk/news/technology/rss.xml" tech news)
                             ("https://feeds.a.dj.com/rss/RSSMarketsMain.xml" economics finance)
-                            ("https://www.economist.com/finance-and-economics/rss.xml" economics finance)
+                            ("https://www.economist.com/finance-and-economics/rss.xml" news)
+                            ("https://www.economist.com/game-theory/rss.xml" analysis )
+                            ("https://www.economist.com/briefing/rss.xml" news)
+                            ("https://www.economist.com/business/rss.xml" business analysis)
+                            ("https://www.economist.com/graphic-detail/rss.xml" analysis )
                             )
              )
      (deft :variables deft-zetteldeft t)
@@ -78,15 +83,15 @@ values."
      ;; syntax-checking
      ;; version-control
      lsp
-     (python :variables
-             pythong-fill-column 90
-             pythong-sort-imports-on-save t
-             python-formatter 'yapf
-             python-backend 'lsp python-lsp-server 'mspyls)
+     ;; (python :variables
+     ;;         pythong-fill-column 90
+     ;;         pythong-sort-imports-on-save t
+     ;;         python-formatter 'yapf
+     ;;         python-backend 'lsp python-lsp-server 'mspyls)
      (ess :variables ess-r-backend 'lsp)
-     multiple-cursors
+     (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
      (spacemacs-layouts :variables
-                        persp-autokill-buffer-on-remove 'kill-weak
+                        ;; persp-autokill-buffer-on-remove 'kill-weak
                         spacemacs-layouts-restrict-spc-tab t)
      )
    ;; List of additional packages that will be installed without being
@@ -95,7 +100,7 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '()
    ;; A list of packages that cannot be updated.
-   dotspacemacs-frozen-packages '()
+   dotspacemacs-frozen-packages '(fill-column-indicator)
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages '()
    ;; Defines the behaviour of Spacemacs when installing packages.
@@ -171,14 +176,14 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
+                         doom-one
+                         doom-acario-light
+                         doom-gruvbox-light
                          spacemacs-dark
                          dracula
                          doom-gruvbox
-                         doom-one
                          doom-nord
-                         doom-gruvbox-light
                          doom-solarized-light
-                         doom-acario-light
                          spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
@@ -358,7 +363,6 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
-  (setq default-directory "c:/Users/nima")
   )
 
 (defun dotspacemacs/user-config ()
@@ -369,11 +373,9 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   ;; basic setup
+  (setq default-directory "c:/Users/nima")
+  (setq spacemacs-buffer--warnings nil)
   (setq inhibit-compacting-font-caches t)
-
-  ;; multiple cursors
-  (setq-default dotspacemacs-configuration-layers '(
-                                                    (multiple-cursors :variables multiple-cursors-backend 'evil-mc)))
 
   ;; org configs need to be wrapped in with-eval-after-load
   (with-eval-after-load 'org
@@ -430,6 +432,20 @@ you should place your code here."
 
   ;; elfeed
   (setq-default elfeed-search-filter "@3-days-ago +unread ")
+  ;; to make show buffer nicer
+  ;; link : https://github.com/syl20bnr/spacemacs/issues/12108
+  (add-hook 'elfeed-show-mode-hook
+            (lambda ()
+              (let ((inhibit-read-only t)
+                    (inhibit-modification-hooks t))
+                (setq-local truncate-lines nil)
+                (setq-local shr-width 85)
+                (set-buffer-modified-p nil))
+              (set-face-attribute 'variable-pitch (selected-frame) :font "georgia-14")
+              (setq-local left-margin-width 10)
+              (setq-local right-margin-width 10)
+              ))
+
 
   ;; visual line
   (setq word-wrap 1)
