@@ -52,7 +52,7 @@ values."
                       auto-completion-enable-sort-by-usage t)
 
      emacs-lisp
-     ;; git
+     git
      markdown
      pdf
      pandoc
@@ -103,7 +103,7 @@ values."
      ;;                 spell-checking-enable-by-default nil
      ;;                 spell-checking-enable-auto-dictionary nil)
      (languagetool :variables
-                   langtool-default-language "en-GB"
+                   langtool-default-language "fr-FR"
                    langtool-language-tool-jar "c:/ProgramData/chocolatey/lib/languagetool/tools/LanguageTool-4.8/languagetool-commandline.jar")
      ;; syntax-checking
      ;; version-control
@@ -217,7 +217,7 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 14
+                               :size 13
                                :weight normal
                                :width normal
                                :powerline-scale 1.1 )
@@ -399,6 +399,7 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   ;; basic setup
+  (menu-bar-mode 1)
   (setq default-directory "c:/Users/nima/")
   (setq spacemacs-buffer--warnings nil)
   (setq inhibit-compacting-font-caches t)
@@ -576,10 +577,13 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(ansi-color-faces-vector
    [default bold shadow italic underline bold bold-italic bold])
+ '(ansi-term-color-vector
+   [unspecified "#FFFFFF" "#d15120" "#5f9411" "#d2ad00" "#6b82a7" "#a66bab" "#6b82a7" "#505050"] t)
  '(company-quickhelp-color-background "#4F4F4F")
  '(company-quickhelp-color-foreground "#DCDCCC")
  '(compilation-message-face (quote default))
  '(evil-want-Y-yank-to-eol nil)
+ '(fci-rule-character-color "#d9d9d9")
  '(fci-rule-color "#14151E")
  '(helm-completion-style (quote emacs))
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
@@ -611,18 +615,24 @@ This function is called at the very end of Spacemacs initialization."
      ("FIXME" . "#dc752f")
      ("XXX+" . "#dc752f")
      ("\\?\\?\\?+" . "#dc752f"))))
+ '(jdee-db-active-breakpoint-face-colors (cons "#191C25" "#81A1C1"))
+ '(jdee-db-requested-breakpoint-face-colors (cons "#191C25" "#A3BE8C"))
+ '(jdee-db-spec-breakpoint-face-colors (cons "#191C25" "#434C5E"))
  '(magit-diff-use-overlays nil)
  '(nrepl-message-colors
    (quote
     ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
+ '(objed-cursor-color "#BF616A")
  '(org-agenda-files
    (quote
-    ("~/Dropbox/org/notes.org" "~/Dropbox/org/schedule.org" "~/Dropbox/org/inbox.org")))
+    ("~/OneDrive/projects/HealthData/README.org" "~/Dropbox/org/notes.org" "~/Dropbox/org/schedule.org" "~/Dropbox/org/inbox.org")))
  '(package-selected-packages
    (quote
     (langtool ranger pandoc-mode ox-pandoc ht helm-company helm-c-yasnippet fuzzy company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete mmm-mode markdown-toc markdown-mode gh-md zenburn-theme zen-and-art-theme xterm-color white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme shell-pop seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme multi-term monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme farmhouse-theme exotica-theme espresso-theme eshell-z eshell-prompt-extras esh-help dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme fsharp-mode eglot xref flymake jsonrpc eldoc project ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired f evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
  '(pos-tip-background-color "#FFFACE")
  '(pos-tip-foreground-color "#272822")
+ '(rustic-ansi-faces
+   ["#2E3440" "#BF616A" "#A3BE8C" "#EBCB8B" "#81A1C1" "#B48EAD" "#88C0D0" "#ECEFF4"])
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    (quote
