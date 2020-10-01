@@ -59,6 +59,7 @@ values."
      bibtex
      (latex :variables
             latex-enable-folding t
+            latex-enable-auto-fill nil
             magic-latex-enable-block-highlight t
             magic-latex-enable-block-align t
             magic-latex-enable-pretty-symbols t
