@@ -18,7 +18,7 @@ Git is the only dependency. The following four lines will set up the bare reposi
 
 ```
 git init --bare $HOME/.dotfiles.git
-echo 'alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"' >> $HOME/.zshrc
+echo 'alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"' >> $HOME/.bashrc
 source ~/.zshrc
 dotfiles config --local status.showUntrackedFiles no
 ```
@@ -41,10 +41,10 @@ dotfiles push origin master
 It just needs two shell commands before fetching the remote repo.
 
 ```
-echo 'alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"' >> $HOME/.zshrc
-source ~/.zshrc
+echo 'alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"' >> $HOME/.bashrc
+source ~/.bashrc
 echo ".dotfiles.git" >> .gitignore
-git clone --bare https://www.github.com/username/repo.git $HOME/.dotfiles.git
+git clone --bare https://www.github.com/nimafazeli/dotfiles.git $HOME/.dotfiles.git
 dotfiles checkout
 dotfiles config --local status.showUntrackedFiles no
 ```
