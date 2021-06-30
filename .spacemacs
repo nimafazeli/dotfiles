@@ -48,7 +48,8 @@ values."
                       auto-completion-enable-help-tooltip t)
 
      ;; fsharp
-     (haskell :variables haskell-completion-backend 'ghc-mod)
+     (haskell :variables haskell-completion-backend 'ghci
+              haskell-process-type 'stack-ghci)
      emacs-lisp
      git
      markdown

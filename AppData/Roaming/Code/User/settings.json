@@ -4,6 +4,14 @@
     "vim.normalModeKeyBindingsNonRecursive": [
         {
             "before": [
+                " "
+            ],
+            "commands": [
+                "vspacecode.space"
+            ]
+        },
+        {
+            "before": [
                 "<space>"
             ],
             "commands": [
@@ -12,6 +20,14 @@
         }
     ],
     "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                " "
+            ],
+            "commands": [
+                "vspacecode.space"
+            ]
+        },
         {
             "before": [
                 "<space>"
